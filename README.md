@@ -23,15 +23,13 @@ The .mat file should contain adjacency matrices for the structural connectivity 
 
 -model parameters: the script is currently set up to define global_coupling and noise in the network. You can also change the model's local parameters if you don't want to use the defaults. To do this, check the github link to see the different parameters for each model. You can add as many as you want as additional input arguments. For example, in the generic 2d oscillator model, there is a local parameter called "g". So you could add the line "mymodel.g[0] = sys.argv[4], for instance, and then the value you want to test would be added as an additional input when you run the command (see below). Most parameters have a minumum and maximum value (also specified in the github doc), so make sure the value you choose is in that range.
 
--name for your set of simulations (simfn)
+* pse_name: name for your parameter space explortation
 
--path to your tvbsims directory 
+* TR: the TR of your empirical bold data
 
--the TR of your empirical bold data
+* simmins: the length of your simulation in minutes (should be the same as the length of your empirical bold data)
 
--the length of your simulation in minutes (should be the same as the length of your empirical bold data)
-
--the integration step size ("dtval"). 0.5 seems to work well for the oscillator. 
+* dtval: the integration step size ("dtval. 0.5 seems to work well for the oscillator. 
 
 6) To run the script:
 

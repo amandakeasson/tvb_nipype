@@ -14,8 +14,7 @@ global_coupling = float(sys.argv[2])
 noise_val = float(sys.argv[3])
 
 # define directories and filenames
-simfn = 'simtest1'
-simdir = '/mnt/c/Users/easso/docs/neurohackademy/tvb_test/'
+pse_name = 'simtest1'
 
 # define timing
 TR=2000.0                       # TR of fMRI
@@ -23,9 +22,9 @@ simmins=0.5                     # length of simulation in minutes
 dtval=0.5                       # integration step size; results in NaNs if too large
 ##########################################################################
 
-indir = os.path.join(simdir,'input/')
-outdir = os.path.join(simdir,'output/')
-results_fn = outdir + '/' + simfn + '_' + subj
+indir = os.path.join(os.getcwd(),'input/')
+outdir = os.path.join(os.getcwd(),'output/')
+results_fn = outdir + '/' + pse_name + '_' + subj
 for a in range(len(sys.argv)-2):
 	results_fn = results_fn + '_' + sys.argv[a+2]
 
