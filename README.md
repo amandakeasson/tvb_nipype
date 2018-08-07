@@ -1,7 +1,12 @@
-Instructions for TVB simulations
+# Instructions for TVB simulations
 
-Download The Virtual Brain from here:
-https://www.thevirtualbrain.org/tvb/zwei/brainsimulator-software
+## SETUP INSTRUCTIONS:
+
+conda create -n tvbenv python=2
+source activdate tvbenv
+conda install jupyter 
+pip install Cython
+pip install -U tvb-library
 
 DOCUMENTATION for information about neural mass models and parameters:
 https://github.com/the-virtual-brain/tvb-library/tree/trunk/tvb/simulator
