@@ -1,27 +1,21 @@
-# Instructions for TVB simulations
+# TVB simulations in nipype
 
-## SETUP INSTRUCTIONS:
+### SETUP:
 
-conda create -n tvbenv python=2
-source activdate tvbenv
-conda install jupyter 
-pip install Cython
-pip install -U tvb-library
+bash ./setup.sh
 
-DOCUMENTATION for information about neural mass models and parameters:
+
+### DOCUMENTATION:
+
+* refer to the document below for information about neural mass models (NMMs) and paramters in each model
+
 https://github.com/the-virtual-brain/tvb-library/tree/trunk/tvb/simulator
 
+### Instructions for running simulations:
 
-1) Add the following line to your ~/.bashrc script:
-LINUX:		export PATH=/path-to-your-tvb-distribution/TVB_Distribution/tvb_data/bin:$PATH
-WINDOWS: 	export PATH=/path-to-your-tvb-distribution/TVB_Distribution/tvb_data/Lib/site-packages:$PATH
-MAC:		[tbd]
 
-2) Make a directory called tvbsims
-
-3) In the tvbsims directories, make "input" and "output" directories
-
-4) In the input directory, make files for each subject called <subjectid>_connectivity.mat. The .mat file should contain adjacency matrices for the structural connectivity weights ("sc_weights"), the tract lengths ("tract_lengths") and the functional connectivity ("fc").
+1) In the "input" directory, make files for each subject called <subjectid>_connectivity.mat. 
+The .mat file should contain adjacency matrices for the structural connectivity weights ("sc_weights"), the tract lengths ("tract_lengths") and the functional connectivity ("fc").
 
 5) In the sim_run.py file, change the variables under the "THINGS TO CHANGE" heading, including:
 
