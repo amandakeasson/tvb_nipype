@@ -4,6 +4,9 @@
 
 bash ./setup.sh
 
+* If you are using a Mac, run this command:
+      echo "backend: TkAgg" > ~/.matplotlib/matplotlibrc
+
 
 ## DOCUMENTATION:
 
@@ -16,7 +19,7 @@ https://github.com/the-virtual-brain/tvb-library/tree/trunk/tvb/simulator
 
 ### 1) Input files:
 
-In the "input" directory, make files for each subject called <subjectid>_connectivity.mat. 
+In the "input" directory, make files for each subject called <subjectid>_connectivity.mat.
 The .mat file should contain adjacency matrices for the structural connectivity weights ("sc_weights"), the tract lengths ("tract_lengths") and the functional connectivity ("fc").
 
 ### 2) simulations script:
@@ -33,9 +36,9 @@ In the sim_run.py file, change the variables under the "THINGS TO CHANGE" headin
 
 * simmins: the length of your simulation in minutes (should be the same as the length of your empirical bold data)
 
-* dtval: the integration step size ("dtval. 0.5 seems to work well for the oscillator. 
+* dtval: the integration step size ("dtval. 0.5 seems to work well for the oscillator.
 
-### 3) run the script using the following command: 
+### 3) run the script using the following command:
 
 python sim_run.py <subject> <global_coupling_value> <noise_value>
 
@@ -43,7 +46,7 @@ if you add additional parameters:
 
 python sim_run.py <subject> <global_coupling_value> <noise_value> <new_param_1> <new_param_2> ... <new_param_last>
 
-### 4) output: 
+### 4) output:
 
 An output file will be saved which includes your simulation name, subject, and the values of the other input parameters, e.g. simtest1_subj01_1.0_0.001.mat
 
@@ -55,9 +58,3 @@ The script will also print out the correlation between the simulation and empiri
 
 ## TEST RUN:
 python sim_run.py sub-01 1.0 0.001
-
-
-
-
-
-
