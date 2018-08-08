@@ -109,7 +109,10 @@ workflow.model.inputs.model_name = 'Generic2dOscillator'
 workflow.model.iterables = ('parameters', [4, 8, 16])
 workflow.connector.inputs.weights = None
 workflow.connector.inputs.lengths = None
-workflow.integrator.inputs.integrator_type = 'HeunStochastic'
-workflow.integrator.iterables = ('noise', [1, 2, 3, 4])
-
+workflow.integrator.inputs.integrator_name = 'HeunStochastic'
+workflow.integrator.inputs.base_dt = 0.1
+workflow.integrator.inputs.noise_type = 'Additive'
+workflow.integrator.inputs.noise_val = 0.0001
+#workflow.integrator.iterables = ('noise', [1, 2, 3, 4])
+workflow.monitor.inputs.monitor_type = 'Raw'
 workflow.run('MultiProc', plugin_args={'n_procs': 10})
