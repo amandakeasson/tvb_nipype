@@ -9,7 +9,7 @@ mkdir output
 ```
 If you are using a Mac, run this command:
 
-      `echo "backend: TkAgg" > ~/.matplotlib/matplotlibrc`
+`echo "backend: TkAgg" > ~/.matplotlib/matplotlibrc`
 
 
 ## DOCUMENTATION:
