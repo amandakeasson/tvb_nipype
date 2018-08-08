@@ -12,6 +12,15 @@ def make_model(model_name, parameters):
     return model_class
 
 
+def load_connectivity_mat(in_file, normalize=False):
+     datamat = scipy.io.loadmat(in_file)
+     sc_weights = datamat['sc_weights']
+     if normalize:
+         sc_weights = sc_weights / sc_weights.max()
+     tract_lengths = datamat['tract_lengths']
+     return sc_weights, tract_lengths
+
+
 def make_connectivity(weights, lengths):
     conn_class = simulator.connectivity.Connectivity(weights, lengths)
     return conn_class
@@ -41,6 +50,16 @@ model = Node(
         function=make_model
     ),
     name='create_model'
+)
+
+
+sc_loader = Node(
+    Function(
+        input_names=['in_file', 'normalize'],
+        output_names=['sc_weights', 'tract_lengths'],
+        function=load_connectivity_mat
+    ),
+    name='load_sc_mat'
 )
 
 
@@ -85,6 +104,7 @@ simulate = Node(
 # https://miykael.github.io/nipype_tutorial/notebooks/basic_workflow.html
 workflow = Workflow(name='TVB Demo!!!')
 workflow.connect([
+    (sc_loader, connector, [("sc_weights", "weights"), ("tract_lengths", "lengths")]),
     (model, simulate, [("model_class", "model_input")]),
     (connector, simulate, [("conn_class", "connectivity")]),
     (integrator, simulate, [("integrator_class", "integrator_input")]),
@@ -97,8 +117,9 @@ workflow.connect([
 workflow.model.inputs.model_name = 'Generic2dOscillator'
 # https://miykael.github.io/nipype_tutorial/notebooks/basic_iteration.html
 workflow.model.iterables = ('parameters', [4, 8, 16])
-workflow.connector.inputs.weights = None
-workflow.connector.inputs.lengths = None
+workflow.sc_loader.inputs.in_file = 'input/sub-01_connectivity.mat'
+# workflow.connector.inputs.weights = None
+# workflow.connector.inputs.lengths = None
 workflow.integrator.inputs.integrator_type = 'HeunStochastic'
 workflow.integrator.iterables = ('noise', [1, 2, 3, 4])
 
