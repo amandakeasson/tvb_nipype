@@ -2,7 +2,10 @@
 
 ## SETUP:
 
-bash ./setup.sh
+conda env create --name tvbenv --file tvb_environment.yml
+source activate tvbenv
+mkdir input
+mkdir output
 
 * If you are using a Mac, run this command:
       echo "backend: TkAgg" > ~/.matplotlib/matplotlibrc
