@@ -7,7 +7,8 @@ source activate tvbenv
 mkdir input
 mkdir output
 ```
-* If you are using a Mac, run this command:
+If you are using a Mac, run this command:
+
       `echo "backend: TkAgg" > ~/.matplotlib/matplotlibrc`
 
 
@@ -60,4 +61,5 @@ The script will also print out the correlation between the simulation and empiri
 
 
 ## TEST RUN:
-python sim_run.py sub-01 1.0 0.001
+
+`python sim_run.py sub-01 1.0 0.001`
