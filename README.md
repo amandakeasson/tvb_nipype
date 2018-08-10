@@ -63,3 +63,11 @@ The script will also print out the correlation between the simulation and empiri
 ## TEST RUN:
 
 `python sim_run.py sub-01 1.0 0.001`
+
+
+## LICENCE
+
+This is released under the MIT licence, but please make sure that you are following 
+the licences of our dependencies, for example [tvb-library](https://github.com/the-virtual-brain/tvb-library)
+is released under the [GPL licence](https://github.com/the-virtual-brain/tvb-library/blob/trunk/LICENSE).
+
