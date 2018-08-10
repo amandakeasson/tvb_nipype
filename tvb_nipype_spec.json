@@ -1,0 +1,44 @@
+{
+    "iterables": {
+        "sc_loader": {
+            "in_file": ["sub-01_connectivity.mat", "sub-02_connectivity.mat", "sub-03_connectivity.mat"]
+        },
+        
+        "integrator": {
+            "noise_val": [0.0001, 0.001, 0.01]
+        },
+        
+        "simulate": {
+            "global_coupling": [0.1, 0.5, 1.0]
+        }
+    },
+    
+    
+    "inputs": {
+        "sc_loader": {
+            "normalize": false
+        },
+        
+        "model": {
+            "model_name": "Generic2dOscillator", 
+            "parameters": {"a": 1, "b": 1}
+        },
+        
+        
+        "integrator": {
+            "integrator_name": "HeunStochastic", 
+            "base_dt": 0.1, 
+            "noise_type": "Additive"
+        },
+
+        "monitors": {
+            "monitor_types": ["TemporalAverage", "Bold"], 
+            "periods": [10.0, 2000.0]
+        },
+        
+        "simulate": {
+            "conduction_speed": 2.0, 
+            "simulation_length": 10000.0
+        }
+    }
+}
