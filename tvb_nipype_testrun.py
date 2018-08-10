@@ -4,7 +4,7 @@
 
 from tvb_interface import * 
 
-
+"""
 # define inputs
 
 model.inputs.model_name = 'Generic2dOscillator'
@@ -24,7 +24,7 @@ simulate.inputs.simulation_length = 10000.0
 integrator.iterables = ("noise_val", [0.0001, 0.001, 0.01])
 sc_loader.iterables = [('in_file', [os.path.join(cwd, 'input', 'sub-01_connectivity.mat'), os.path.join(cwd, 'input', 'sub-02_connectivity.mat'), os.path.join(cwd, 'input', 'sub-03_connectivity.mat')])]
 simulate.iterables = [('global_coupling', np.linspace(0.5, 1.5, 3))]
-
+"""
 
 # write graph
 
