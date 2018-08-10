@@ -2,7 +2,7 @@
 
 import warnings
 warnings.filterwarnings('ignore')
-import os, sys, scipy.io, numpy as np
+import os, sys, scipy.io, json, numpy as np
 from nipype import Node, Function, Workflow
 
 cwd = os.getcwd()
@@ -174,3 +174,14 @@ workflow.connect([
 ])
 
 
+#Read inputs from spec
+with open('tvb_nipype_spec.json') as f:
+    spec = json.load(f)
+
+all_vars = vars()
+for var_name, var_spec in spec['iterables'].iteritems():
+    all_vars[var_name].iterables = var_spec.items()
+
+for var_name, var_spec in spec['inputs'].iteritems():
+    for param, param_val in var_spec.iteritems():
+        setattr(all_vars[var_name].inputs, param, param_val)
