@@ -80,7 +80,7 @@ def make_monitors(monitor_types, periods):
     return monitor_class
 
 
-def run_simulation(out_file, model_input, conn_input, integrator_input, monitor_input, global_coupling = 0.1, conduction_speed=3.0, simulation_length=10000.0):
+def run_simulation(model_input, conn_input, integrator_input, monitor_input, global_coupling = 0.1, conduction_speed=3.0, simulation_length=10000.0):
     import warnings, sys, numpy, pickle, os, scipy.io
     warnings.filterwarnings('ignore')
     sys.modules['mtrand'] = numpy.random.mtrand
@@ -94,7 +94,7 @@ def run_simulation(out_file, model_input, conn_input, integrator_input, monitor_
     with open(monitor_input, "rb") as f:
         monitor_input = pickle.load(f)
 
-    from tvb.simulator.lab import coupling, simulator, connectivity, models, integrators, noise
+    from tvb.simulator.lab import models, connectivity, integrators, noise, monitors, simulator, coupling
     wm_coupling = coupling.Linear(a = global_coupling)
     sim = simulator.Simulator(model = model_input, connectivity = conn_input, coupling = wm_coupling,
                              integrator = integrator_input, monitors = monitor_input,
@@ -156,10 +156,21 @@ monitors = Node(
 
 simulate = Node(
     Function(
-        input_names=['out_file', 'model_input', 'conn_input', 'integrator_input', 'monitor_input',
+        input_names=['model_input', 'conn_input', 'integrator_input', 'monitor_input',
                      'global_coupling', 'conduction_speed', 'simulation_length'],
         output_names=['abs_out_file'],
         function=run_simulation
     ),
     name='create_simulation'
 )
+
+workflow = Workflow(name='tvb_demo', base_dir=os.getcwd())
+workflow.connect([
+    (model, simulate, [("model_class", "model_input")]),
+    (sc_loader, sc, [("sc_weights", "weights"), ("tract_lengths", "lengths")]),
+    (sc, simulate, [("conn_class", "conn_input")]),
+    (integrator, simulate, [("integrator_class", "integrator_input")]),
+    (monitors, simulate, [("monitor_class", "monitor_input")])
+])
+
+
