@@ -174,14 +174,20 @@ workflow.connect([
 ])
 
 
-#Read inputs from spec
+# READ JSON SPEC
+
 with open('tvb_nipype_spec.json') as f:
     spec = json.load(f)
 
 all_vars = vars()
 for var_name, var_spec in spec['iterables'].iteritems():
+    if 'in_file' in var_spec:
+        var_spec['in_file'] = [os.path.join(cwd, 'input', f) for f in var_spec['in_file']]
     all_vars[var_name].iterables = var_spec.items()
 
 for var_name, var_spec in spec['inputs'].iteritems():
     for param, param_val in var_spec.iteritems():
-        setattr(all_vars[var_name].inputs, param, param_val)
+        if (param == 'in_file'):
+            setattr(all_vars[var_name].inputs, param, os.path.join(cwd, 'input', param_val))
+        else:
+            setattr(all_vars[var_name].inputs, param, param_val)
