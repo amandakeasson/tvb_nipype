@@ -16,7 +16,9 @@ If you are using a Mac, run this command:
 
 From within your tvb_nipype directory modify the template file called `tvb_nipype_spec.json`. The `iterables` are the parameters for which you would like to test multiple values; the `inputs` are parameters for which you would like to test a single value.
 
-Then, simply run `python run_tvb_nipype.py` and all of your simulations will run. 
+Then, simply run `python run_tvb_nipype.py pse_name nproc` 
+
+where `pse_name` is the name for your set of simualtions and `nproc` is the number of processes to launch in parallel.
 
 ## LICENCE: 
 
