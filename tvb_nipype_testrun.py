@@ -1,7 +1,5 @@
 # test run for tvb_nipype
 
-# import all the things!
-
 from tvb_interface import * 
 
 """
