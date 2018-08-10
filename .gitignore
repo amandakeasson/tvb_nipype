@@ -1,3 +1,8 @@
+*.mat
+*.dot
+
+### BELOW ARE PYTHON STANDARD IGNORES ###
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
