@@ -15,9 +15,9 @@ echo "backend: TkAgg" > ~/.matplotlib/matplotlibrc
 
 ## RUNNING TVB_NIPYPE
 
-Put all structural connectivity data in the `input` folder. Each file is a `.mat` file which contains `sc_weights` and `tract_lengths` for a subject.
+Put all structural connectivity data in the *input* folder. Each file is a `.mat` file which contains `sc_weights` and `tract_lengths` for a subject.
 
-From within your tvb_nipype directory modify the template file called `tvb_nipype_spec.json`. The `iterables` field are the parameters for which you would like to test multiple values; the `inputs` field are parameters for which you would like to fix at a single value.
+From within your *tvb_nipype* directory modify the template file called `tvb_nipype_spec.json`. The `iterables` field specifies the parameters for which you would like to test multiple values; the `inputs` field specifies parameters for which you would like to fix at a single value.
 
 Then, simply run 
 ```
